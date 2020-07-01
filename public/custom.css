@@ -1,0 +1,23 @@
+/* this file is loaded by view and styles the page */
+.count {
+    background-color: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    font-size: 14px;
+    color: #fff;
+    border: 2px solid #fff;
+    text-align: center;
+    position: absolute;
+    bottom: 15px;
+    left: 24px;
+}
+.avatar {
+  width: 64px;
+  border-radius: 50%
+}
+.headerShop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

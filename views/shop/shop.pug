@@ -1,0 +1,40 @@
+extends ../layouts/common
+block content
+  .container
+    .headerShop
+      if !login
+        h3 Bạn chưa đăng nhập ! Hãy
+           a(href='/auth/login', class="btn btn-primary ml-3") Đăng nhập
+      if !shop
+        if login == true
+          h3 Bạn chưa có cửa hàng ! Hãy
+             a(href="/shop/create", class="btn btn-primary ml-3") Tạo ngay
+      else 
+        h2.text-primary Welcome to
+          span.pl-2=shop.name
+        .addBook
+          a(href="/shop/addBook/" + shop.id, class="btn" style="background-color: rgba(0, 124, 254, 0.5); color: #0f0326;font-weight: 500;") Add book to store
+        .addBook
+          a(href="/shop/books/" + shop.id, class="btn mt-2" style="background-color: #4ce0d9; color: #0f0326;font-weight: 500;") View as
+      if books
+        table.table.table-bordered.mt-5
+          thead
+            tr
+              th(scope='col') Book
+              th(scope='col') Description
+              th(scope='col') Book Cover
+              th(scope='col') Add to cart
+          tbody
+          each book, index in books
+            tr
+              td=book.title
+              td=book.description
+              if book.bookCoverUrl 
+                td
+                  img(src=book.bookCoverUrl style="width: 40px;")
+              else 
+                td
+                  img(src='https://cdn.glitch.com/6553f78d-3d9d-4d44-94db-46ae68d9c495%2FbookDetail.jpg?v=1592970426313' ,style="width: 40px")
+              td
+                a(href="#")
+                  i(class="far fa-trash-alt", style="color: red")

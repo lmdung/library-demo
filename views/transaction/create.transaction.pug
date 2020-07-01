@@ -1,0 +1,23 @@
+extends ../layouts/common
+block content
+  .container
+    h3 Create Transaction
+    form(action="", method="POST")
+      .row
+        .form-group.col-md-12
+          label(for="user") Choose a user: 
+          select(name="userId", id="user", class="form-control")
+            option(selected) Choose user
+            each user in users
+              option(value=user.id)=user.name
+      .row
+        .form-group.col-md-8
+          label(for="book") Choose a book: 
+          select(name="bookId", id="user", class="form-control")
+            option(selected) Choose book
+            each book in books
+              option(value=book.id)=book.title
+        .form-group.col-md-4
+          label(for="quantity") Quantity
+          input(type="number", placeholder="Quantity", name="quantity", class="form-control" id="quantity")
+      button(class="btn btn-primary") Create

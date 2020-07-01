@@ -1,0 +1,14 @@
+extends ../layouts/common
+block content
+  .container
+    h3 Update Avatar
+      .updateAvatar
+        if !user.avatar 
+          img(src="https://cdn.glitch.com/f6dddea4-f29f-47e4-bede-8c58729d49fa%2Fdefault-avata.png?v=1592281657523" alt="Avatar" class="avatar")
+        else 
+          img(src=user.avatar class="avatar")
+    form(action="/users/updateAvatar/" + user.id, method="POST", class="w-50" enctype="multipart/form-data")
+      .form-group
+        label(for="avatar") Upload avatar
+        input(type="file" class="form-control-file" id="avatar" name="avatar")
+      button(class="btn btn-primary") Update

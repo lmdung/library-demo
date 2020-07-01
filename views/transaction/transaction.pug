@@ -1,0 +1,21 @@
+extends ../layouts/common
+block content
+  .container
+    h3 Transactions
+    a(href="/transaction/create", class="btn btn-primary") Create Transaction
+    table(style="width: 100%", class="table table-bordered mt-3")
+      tr
+        th User
+        th Book
+        th Quantity
+        th IsComplete
+      each transaction in listTransaction
+        tr
+          td=transaction.user
+          td=transaction.book
+          td=transaction.quantity
+          td
+            a(href="/transaction/" + transaction.id + "/complete")
+              <i class="fas fa-check"></i>
+        
+    

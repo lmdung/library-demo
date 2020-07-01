@@ -1,0 +1,23 @@
+extends ../layouts/common
+block content
+  .container
+    h3 Create a new user
+    if errors
+      each error in errors
+        .alert.alert-danger(role="alert")=error
+    form(action="/users/addUser", method="POST" class="w-50" enctype="multipart/form-data")
+      .form-group
+        input(type="text", name="name", placeholder="Name", class="form-control", value= values? values.name : '')
+      .form-group
+        input(type="text", name="phone", placeholder="Phone", class="form-control", value= values? values.phone : '')
+      .form-group
+        input(type="text", name="email", placeholder="Email", class="form-control", value= values? values.email : '')
+      .form-group
+        input(type="password", name="password", placeholder="Password", class="form-control", value= values? values.password : '')
+      .form-group
+        label(for="avatar") Upload avatar
+        input(type="file" class="form-control-file" id="avatar" name="avatar")
+      .form-check
+        input#isAdmin.form-check-input(type='checkbox', name="isAdmin")
+        label.form-check-label(for='isAdmin') IsAdmin
+      button(class="btn btn-primary mt-3") Create

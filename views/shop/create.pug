@@ -1,0 +1,9 @@
+extends ../layouts/common
+block content
+  .container
+    h3 Create your shop
+    form(action="/shop/create/" + user.id, method="POST", class="w-50")
+      .form-group
+        label(for="name") Your Store Name
+        input(type="text", placeholder="Your Store Name", name="name", class="form-control")
+      button(type="submit" class="btn btn-primary") Create

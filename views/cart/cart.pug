@@ -1,0 +1,24 @@
+extends ../layouts/common
+block content
+  .container
+    h1 Books in Cart
+    a(href="/cart/rent", class="btn btn-success") Rent
+    table.table.table-bordered.mt-3
+      thead
+        tr
+          th(scope='col') Book
+          th(scope='col') Description
+          th(scope='col') Book Cover
+          th(scope='col') Quantity
+      tbody
+      each book, index in listBookRent
+        tr
+          td=book.title
+          td=book.description
+          if book.bookCoverUrl 
+            td
+              img(src=book.bookCoverUrl style="width: 40px;")
+          else 
+            td
+              img(src='https://cdn.glitch.com/6553f78d-3d9d-4d44-94db-46ae68d9c495%2FbookDetail.jpg?v=1592970426313' ,style="width: 40px")
+          td=book.amountRent

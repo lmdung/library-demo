@@ -1,0 +1,60 @@
+extends ../layouts/common
+block content
+  .container
+    h3 List User
+    a(href="/users/addUser", class="btn btn-primary") Create User
+    table.table.table-bordered.mt-3
+      thead
+        tr
+          th(scope='col') Action
+          th
+          th(scope='col') Name
+          th Avatar
+      tbody
+      each user, index in users
+        tr
+          td(class="w-25")
+            a(href="/users/update/" + user.id)
+              i(class="fas fa-pen")
+            a(href="/users/delete/" + user.id, class="ml-3")
+              i(class="far fa-trash-alt", style="color: red")
+          td=`${start + index + 1}`
+          td=user.name
+          if !user.avatar
+            td
+              img(src="https://cdn.glitch.com/f6dddea4-f29f-47e4-bede-8c58729d49fa%2Fdefault-avata.png?v=1592281657523" style="width: 32px" )
+          else 
+            td
+              img(src=user.avatar style="width: 32px;")
+    nav
+      ul.pagination.justify-content-center
+        li.page-item
+          a.page-link(href='/users?page='+1, aria-label='Previous')
+            span(aria-hidden='true') &laquo;
+            span.sr-only Previous
+        if page==1
+          li.page-item.active
+            a.page-link(href='/users?page=' + 1) 1
+          li.page-item
+            a.page-link(href='/users?page='+ `${page + 1}`)=`${page + 1}`
+          li.page-item
+            a.page-link(href='/users?page='+ `${page + 2}`)=`${page + 2}`
+        if (page > 1 && page <maxPage)
+          li.page-item
+            a.page-link(href='/users?page=' + `${page - 1}`)=`${page - 1}`
+          li.page-item.active
+            a.page-link(href='/users?page='+ page)=page
+          li.page-item
+            a.page-link(href='/users?page='+ `${page + 1}`)=`${page + 1}`
+        if page==maxPage
+          li.page-item
+            a.page-link(href='/users?page=' + `${page - 2}`)=`${page - 2}`
+          li.page-item
+            a.page-link(href='/users?page=' + `${page - 1}`)=`${page - 1}`
+          li.page-item.active
+            a.page-link(href='/users?page='+ page)=page
+        li.page-item
+          a.page-link(href='/users?page='+maxPage, aria-label='Next')
+            span(aria-hidden='true') &raquo;
+            span.sr-only Next
+          

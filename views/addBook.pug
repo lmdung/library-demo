@@ -1,0 +1,25 @@
+extends ./layouts/common
+block content
+  .container
+    if !shopId
+      h3 Add a new book
+      form(action="/books/addBook", method="POST", class="w-50" enctype="multipart/form-data")
+        .form-group
+          input(type="text", placeholder="Title", name="title", class="form-control")
+        .form-group
+          input(type="text", placeholder="Description", name="description", class="form-control")
+        .form-group
+          label(for="bookCover") Book Cover
+          input(type="file" class="form-control-file" id="bookCover" name="bookCover")
+        button(type="submit" class="btn btn-primary") Add
+    else
+      h3 Add book for your Store
+      form(action="/shop/addBook/" + shopId, method="POST", class="w-50" enctype="multipart/form-data")
+        .form-group
+          input(type="text", placeholder="Title", name="title", class="form-control")
+        .form-group
+          input(type="text", placeholder="Description", name="description", class="form-control")
+        .form-group
+          label(for="bookCover") Book Cover
+          input(type="file" class="form-control-file" id="bookCover" name="bookCover")
+        button(type="submit" class="btn btn-primary") Add

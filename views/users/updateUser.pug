@@ -1,0 +1,19 @@
+extends ../layouts/common
+block content
+  .container
+    h3 Update User
+    .updateAvatar
+      if !user.avatar 
+        a(class="btn btn-info mb-3" href="/users/updateAvatar/"+ user.id, role="button")
+          img(src="https://cdn.glitch.com/f6dddea4-f29f-47e4-bede-8c58729d49fa%2Fdefault-avata.png?v=1592281657523" alt="Avatar" class="avatar")
+      else 
+        a(class="btn btn-info mb-3" href="/users/updateAvatar/"+ user.id, role="button")
+          img(src=user.avatar class="avatar")
+    form(action="/users/update/" + user.id, method="POST", class="w-50")
+      .form-group
+        input(type="text", placeholder="Name", value=user.name, name="name", class="form-control")
+      .form-group
+        input(type="text", placeholder="Phone", value=user.phone, name="phone", class="form-control")
+      .form-group
+        input(type="text", placeholder="Email", value=user.email, name="email", class="form-control")
+      button(class="btn btn-primary") Update
