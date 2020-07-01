@@ -10,6 +10,7 @@ module.exports = async (req, res, next) => {
     });
   } else {
     var cartInfor = await Session.find({sessionId: req.signedCookies.sessionId});
+    console.log(cartInfor)
     var countCart = cartInfor[0].cart.length
     res.locals.countCart = countCart
   }

@@ -16,7 +16,9 @@ const isAminMiddleware = require("./middleware/isAdmin.middleware");
 const sessionMiddleware = require("./middleware/session.middleware");
 
 const app = express();
-
+mongoose.connect(process.env.MONGO, {
+  useNewUrlParser: true
+});
 app.use(express.static("public"));
 app.set("views", "./views");
 app.set("view engine", "pug");
@@ -25,9 +27,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.use(cookieParser("5sd5as45we4"));
 app.use(sessionMiddleware);
 
-mongoose.connect(process.env.MONGO, {
-  useNewUrlParser: true
-});
+
 
 
 app.get("/", authMiddleware.requireAuth, (request, response) => {
